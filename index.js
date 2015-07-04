@@ -2,6 +2,7 @@ var converters = require('color-convert')
 //var cwise = require('cwise')
 var zeros = require('zeros')
 var fs = require('fs')
+var slice = require('sliced')
 
 module.exports = function (from, to) {
   /*
@@ -12,8 +13,6 @@ module.exports = function (from, to) {
   var pre = fs.readFileSync(
     require.resolve('color-convert/conversions')
   ).toString().replace('module.exports', 'this.convert')
-
-  console.log(pre.toString())
 
   var fn = cwise({
     args: ['array', 'array'],
@@ -32,7 +31,7 @@ module.exports = function (from, to) {
     }
     var channelDepth = input.shape[input.shape.length - 1]
     for (var i = 0; i < input.data.length; i += channelDepth) {
-      var pixel = input.data.slice(i, i + channelDepth)
+      var pixel = slice(input.data, i, i + channelDepth)
       converter(pixel).forEach(function (d, j) {
         output.data[i + j] = d
       })
