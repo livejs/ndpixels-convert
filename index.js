@@ -36,6 +36,7 @@ module.exports = function (from, to) {
         output.data[i + j] = d
       })
     }
+
     return output
   }
 }
