@@ -27,9 +27,14 @@ module.exports = function (from, to) {
 
   var conversions = require('color-convert')
   var fn = function convertData (input, output) {
-    Object.keys(input).forEach(function (i) {
-      output[i] = conversions[from][to](input[i])
-    })
+    var channelDepth = input.shape[input.shape.length - 1]
+    var numChannels = Math.floor(input.data.length / channelDepth)
+    for (var i = 0; i < numChannels; i++) {
+      var pixel = input.data.slice(i, i + channelDepth)
+      conversions[from][to](pixel).forEach(function (d, j) {
+        output.data[i + j] = d
+      })
+    }
   }
 
   return function (input, output) {

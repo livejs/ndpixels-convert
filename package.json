@@ -1,7 +1,7 @@
 {
   "name": "ndpixel-convert",
   "version": "1.0.0",
-  "description": "convert ndpixel between color spaces",
+  "description": "convert ndpixels between color spaces",
   "main": "index.js",
   "scripts": {
     "test": "tape test.js"
