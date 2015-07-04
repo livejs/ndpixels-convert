@@ -28,7 +28,6 @@
   "homepage": "https://github.com/livejs/ndpixel-convert#readme",
   "dependencies": {
     "color-convert": "^0.5.3",
-    "cwise": "^1.0.5",
     "zeros": "^1.0.0"
   },
   "devDependencies": {
