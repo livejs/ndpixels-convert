@@ -3,7 +3,6 @@ var converters = require('color-convert')
 var zeros = require('zeros')
 var fs = require('fs')
 
-
 module.exports = function (from, to) {
   /*
 
@@ -25,23 +24,19 @@ module.exports = function (from, to) {
   })
   */
 
-  var conversions = require('color-convert')
-  var fn = function convertData (input, output) {
+  var converter = converters[from][to]
+
+  return function convertData (input, output) {
+    if (!output) {
+      output = input
+    }
     var channelDepth = input.shape[input.shape.length - 1]
-    var numChannels = Math.floor(input.data.length / channelDepth)
-    for (var i = 0; i < numChannels; i++) {
+    for (var i = 0; i < input.data.length; i += channelDepth) {
       var pixel = input.data.slice(i, i + channelDepth)
-      conversions[from][to](pixel).forEach(function (d, j) {
+      converter(pixel).forEach(function (d, j) {
         output.data[i + j] = d
       })
     }
-  }
-
-  return function (input, output) {
-    if (arguments.length < 2) {
-      output = zeros(input.shape, input.dtype)
-    }
-    fn(input, output)
     return output
   }
 }
