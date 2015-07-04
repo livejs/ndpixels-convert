@@ -1,0 +1,38 @@
+{
+  "name": "ndpixel-convert",
+  "version": "1.0.0",
+  "description": "convert ndpixel between color spaces",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livejs/ndpixel-convert.git"
+  },
+  "keywords": [
+    "ndpixel",
+    "rgb",
+    "hsl",
+    "hsv",
+    "rgba",
+    "convert",
+    "pixel",
+    "ndarray"
+  ],
+  "author": "ahdinosaur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livejs/ndpixel-convert/issues"
+  },
+  "homepage": "https://github.com/livejs/ndpixel-convert#readme",
+  "dependencies": {
+    "color-convert": "^0.5.3",
+    "cwise": "^1.0.5",
+    "zeros": "^1.0.0"
+  },
+  "devDependencies": {
+    "ndarray": "^1.0.18",
+    "tape": "^4.0.0"
+  }
+}
