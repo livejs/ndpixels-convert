@@ -10,16 +10,15 @@ module.exports = function (from, to) {
       var chunkLength = shape[shape.length - 1]
       var chunk = new Array(chunkLength)
 
-      chunk[0] = a[0]
-      chunk[1] = a[1]
-      chunk[2] = a[2]
-      if (chunkLength === 4) {
-        chunk[3] = a[3]
+      for (var i = 0; i < chunkLength; i++) {
+        chunk[i] = a[i]
       }
 
-      converter(chunk).forEach(function (d, i) {
-        b[i] = d
-      })
+      var convertedChunk = converter(chunk)
+
+      for (i = 0; i < chunkLength; i++) {
+        b[i] = convertedChunk[i]
+      }
     }
   })
 
