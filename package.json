@@ -28,8 +28,7 @@
   "homepage": "https://github.com/livejs/ndpixels-convert#readme",
   "dependencies": {
     "color-convert": "^0.5.3",
-    "sliced": "0.0.5",
-    "zeros": "^1.0.0"
+    "cwise": "^1.0.5"
   },
   "devDependencies": {
     "ndarray": "^1.0.18",

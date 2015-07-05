@@ -9,14 +9,14 @@ test('convert ndpixel colors', function (t) {
       0, 100, 100,
       120, 100, 100,
       240, 100, 100
-    ], [1, 1, 3]]
+    ], [3, 3]]
   ]
   var outputs = [
     ['rgb', [
       255, 0, 0,
       0, 255, 0,
       0, 0, 255
-    ], [1, 1, 3]]
+    ], [3, 3]]
   ]
 
   for (var i = 0; i < inputs.length; i++) {
