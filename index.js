@@ -1,35 +1,39 @@
-var converters = require('color-convert')
+var colorSpaces = require('color-space')
 var cwise = require('cwise')
 
 module.exports = function (from, to) {
 
   var convert = cwise({
     funcName: 'convert',
-    args: ['scalar', { blockIndices: -1}, { blockIndices: -1}, 'index', 'shape'],
-    body: function (converter, a, b, path, shape) {
-      var chunkLength = shape[shape.length - 1]
-      var chunk = new Array(chunkLength)
+    args: ['scalar', 'scalar', 'scalar', { blockIndices: -1}, { blockIndices: -1}, 'index'],
+    body: function (converter, inputLength, outputLength, input, output, path) {
+      var inputChunk = new Array(inputLength)
 
-      for (var i = 0; i < chunkLength; i++) {
-        chunk[i] = a[i]
+      for (var i = 0; i < inputLength; i++) {
+        inputChunk[i] = input[i]
       }
 
-      var convertedChunk = converter(chunk)
+      var outputChunk = converter(inputChunk)
 
-      for (i = 0; i < chunkLength; i++) {
-        b[i] = convertedChunk[i]
+      for (i = 0; i < outputLength; i++) {
+        output[i] = outputChunk[i]
       }
     }
   })
 
-  var converter = converters[from][to]
+  var inputSpace = colorSpaces[from]
+  var inputLength = inputSpace.channel.length
+  var outputSpace = colorSpaces[to]
+  var outputLength = outputSpace.channel.length
+
+  var converter = inputSpace[to]
 
   return function convertData (input, output) {
     if (!output) {
       output = input
     }
 
-    convert(converter, input, output)
+    convert(converter, inputLength, outputLength, input, output)
 
     return output
   }
